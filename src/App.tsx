@@ -3,7 +3,7 @@ import useWeather from "./hooks/useWeather";
 import "./index.css";
 
 function App() {
-  const { fetchWeather } = useWeather();
+  const { fetchWeather, weather } = useWeather();
 
   return (
     <>
@@ -13,7 +13,10 @@ function App() {
         </h1>
         <div className="w-11/12 max-w-screen-lg m-auto text-white mt-10 md:grid md:grid-cols-2 md:items-center md:gap-5 md:mt-6">
           <Form fetchWeather={fetchWeather} />
-          <p>2</p>
+          <p>
+            {weather.name}
+            {weather.main.temp}
+          </p>
         </div>
       </div>
     </>
