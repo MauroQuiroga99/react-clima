@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { SearchType } from "../types";
 import { countries } from "../data/countries";
 import Alert from "./Alert";
+import "../index.css";
 
 type FormProps = {
   fetchWeather: (search: SearchType) => Promise<void>;
@@ -37,7 +38,10 @@ const Form = ({ fetchWeather }: FormProps) => {
       <form className=" flex flex-col gap-8" action="" onSubmit={handleSubmit}>
         {alert && <Alert> {alert} </Alert>}
         <div className=" flex flex-col gap-8">
-          <label className="text-white font-bold uppercase " htmlFor="city">
+          <label
+            className=" stroke-text-form text-white font-bold uppercase "
+            htmlFor="city"
+          >
             Ciudad:
           </label>
           <input
@@ -51,7 +55,10 @@ const Form = ({ fetchWeather }: FormProps) => {
           />
         </div>
         <div className=" flex flex-col gap-8">
-          <label className="text-white font-bold uppercase" htmlFor="country">
+          <label
+            className="stroke-text-form text-white font-bold uppercase"
+            htmlFor="country"
+          >
             País:
           </label>
           <select
