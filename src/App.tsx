@@ -1,6 +1,8 @@
 import Form from "./components/Form";
+import useWeather from "./hooks/useWeather";
 
 function App() {
+  const { fetchWeather } = useWeather();
   return (
     <>
       <div className="bg-[url('/public/bg-on-clima.gif')] bg-no-repeat bg-cover h-lvh  ">
@@ -8,7 +10,7 @@ function App() {
           Buscador De Clima
         </h1>
         <div className="w-11/12 max-w-screen-lg m-auto text-white mt-10 md:grid md:grid-cols-2 md:items-center md:gap-5 md:mt-6">
-          <Form />
+          <Form fetchWeather={fetchWeather} />
           <p>2</p>
         </div>
       </div>
