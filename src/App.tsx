@@ -1,5 +1,5 @@
 import Form from "./components/Form";
-import Spiner from "./components/Spiner";
+import Spinner from "./components/Spinner";
 import WeatherDetail from "./components/WeatherDetail";
 import useWeather from "./hooks/useWeather";
 import "./index.css";
@@ -15,7 +15,7 @@ function App() {
         </h1>
         <div className="w-11/12 max-w-screen-lg m-auto text-white mt-10 md:grid md:grid-cols-2 md:items-center md:gap-20 md:mt-6 flex content-center">
           <Form fetchWeather={fetchWeather} />
-          {loading && <Spiner />}
+          {loading && <Spinner />}
           {hasWeatherData && <WeatherDetail weather={weather} />}
         </div>
       </div>
