@@ -1,6 +1,6 @@
 import axios from "axios";
 import { SearchType, Weather } from "../types";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function useWeather() {
   const [weather, setWeather] = useState<Weather>({
@@ -11,6 +11,7 @@ export default function useWeather() {
       temp_min: 0,
     },
   });
+
   const fetchWeather = async (search: SearchType) => {
     const addId = import.meta.env.VITE_API_KEY;
     try {
@@ -22,21 +23,19 @@ export default function useWeather() {
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${addId}`;
       const { data: weatherResult } = await axios<Weather>(weatherUrl);
-      setWeather({
-        name: weatherResult.name,
-        main: {
-          temp: weatherResult.main.temp,
-          temp_max: weatherResult.main.temp_max,
-          temp_min: weatherResult.main.temp_min,
-        },
-      });
+      setWeather(weatherResult);
 
       console.log(lat);
       console.log(lon);
+      console.log(weatherResult);
     } catch (error) {}
   };
+
+  const hasWeatherData = useMemo(() => weather.name, [weather]);
+
   return {
     weather,
     fetchWeather,
+    hasWeatherData,
   };
 }
