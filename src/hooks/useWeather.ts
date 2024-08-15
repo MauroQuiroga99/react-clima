@@ -12,8 +12,11 @@ export default function useWeather() {
     },
   });
 
+  const [loading, setLoading] = useState(false);
+
   const fetchWeather = async (search: SearchType) => {
     const addId = import.meta.env.VITE_API_KEY;
+    setLoading(true);
     try {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${addId}`;
       const { data } = await axios(geoUrl);
@@ -28,13 +31,17 @@ export default function useWeather() {
       console.log(lat);
       console.log(lon);
       console.log(weatherResult);
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   const hasWeatherData = useMemo(() => weather.name, [weather]);
 
   return {
     weather,
+    loading,
     fetchWeather,
     hasWeatherData,
   };
