@@ -12,7 +12,7 @@ function App() {
         <h1 className=" stroke-text text-center text-4xl text-black uppercase py-10 mb-10 font-bold ">
           Buscador De Clima
         </h1>
-        <div className="w-11/12 max-w-screen-lg m-auto text-white mt-10 md:grid md:grid-cols-2 md:items-center md:gap-5 md:mt-6">
+        <div className="w-11/12 max-w-screen-lg m-auto text-white mt-10 md:grid md:grid-cols-2 md:items-center md:gap-20 md:mt-6">
           <Form fetchWeather={fetchWeather} />
           {hasWeatherData && <WeatherDetail weather={weather} />}
         </div>
